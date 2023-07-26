@@ -68,7 +68,7 @@ export const spec = {
     logMessage('FreePass BidAdapter interpreted ORTB bid request as ', data);
 
     // Only freepassId is supported
-    let freepassId = (validBidRequests[0].userId && validBidRequests[0].userId.freepassId) || {};
+    const freepassId = (validBidRequests[0].userId && validBidRequests[0].userId.freepassId) || {};
     data.user = prepareUserInfo(data.user, freepassId);
     data.device = prepareDeviceInfo(data.device, freepassId);
 
