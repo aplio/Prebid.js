@@ -43,7 +43,8 @@ describe('FreePass adapter', function () {
             'userId': '56c4c789-71ce-46f5-989e-9e543f3d5f96',
             'commonId': 'commonIdValue'
           }
-        }
+        },
+        "publisherId" : "publisherIdValue"
       }];
       bidderRequest = {};
     });
@@ -107,6 +108,12 @@ describe('FreePass adapter', function () {
       expect(ortbData.device.ip).to.be.undefined;
       expect(ortbData.device.ext).to.be.an('object');
       expect(ortbData.device.ext.is_accurate_ip).to.equal(0);
+    });
+
+    it('should add publisherId when avilable', function () {
+      const bidRequest = spec.buildRequests(bidRequests, bidderRequest);
+      const ortbData = bidRequest.data;
+      expect(ortbData.imp[0].publisherId).to.equal('publisherIdValue');
     });
   });
 
